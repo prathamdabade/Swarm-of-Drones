@@ -73,6 +73,7 @@ A step by step explaination of how to get the examples running:
     SYSID_THISMAV 1
     ```
     - The other two files should be exactly the same just change the `SYSID_THISMAV` to `2` and `3` respectively.
+    - Finally add the path to the models to the `GAZEBO_MODEL_PATH` variable by adding the following line to your bashrc or zshrc.`export GAZEBO_MODEL_PATH=${GAZEBO_MODEL_PATH}:$HOME/catkin_ws/src/swarm_main/models`. Then for the changes to take effect, do a `source ~/.bashrc` or `source ~/.zshrc`
 ## Running the tests
 
 Some basic functionality is already implemented for testing and ease of use in future development
