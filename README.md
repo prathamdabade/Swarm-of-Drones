@@ -5,7 +5,7 @@ Initial documentation and setup guide for getting started
 ## Summary
 
   - [Getting Started](#getting-started)
-  - [Runing the tests](#running-the-tests)
+  - [Running the tests](#running-the-tests)
   - [A breakdown of the utils_api](#a-breakdown-of-the-utils_api)
   - [Development](#development)
 
@@ -23,7 +23,7 @@ What things you need to get started and how to install them:
 
 ### Installing
 
-A step by step explaination of how to get the examples running:
+A step by step explanation of how to get the examples running:
 1. first git clone the swarm_utils and swarm_main repos inside your workspace (~/catkin_ws/src/)
     - `git clone https://github.com/prathamdabade/swarm_utils.git`
     - `git clone https://github.com/prathamdabade/swarm_main.git`
@@ -51,7 +51,7 @@ A step by step explaination of how to get the examples running:
             },
 
     ```
-    - Now we need to add the corrosponding `.parm` file in the `ardupilot/Tools/autotest/default_params` folder.
+    - Now we need to add the corresponding `.parm` file in the `ardupilot/Tools/autotest/default_params` folder.
         - `gazebo-drone1.parm`
         - `gazebo-drone2.parm`
         - `gazebo-drone3.parm`
@@ -72,7 +72,7 @@ A step by step explaination of how to get the examples running:
     RNGFND1_MAX_CM 5000
     SYSID_THISMAV 1
     ```
-    - The other two files should be exactly the same just change the `SYSID_THISMAV` to `2` and `3` respectively.
+    - The other two files should be exactly the same, just change the `SYSID_THISMAV` to `2` and `3` respectively.
     - Finally add the path to the models to the `GAZEBO_MODEL_PATH` variable by adding the following line to your bashrc or zshrc.`export GAZEBO_MODEL_PATH=${GAZEBO_MODEL_PATH}:$HOME/catkin_ws/src/swarm_main/models`. Then for the changes to take effect, do a `source ~/.bashrc` or `source ~/.zshrc`
 ## Running the tests
 
@@ -87,11 +87,11 @@ Some basic functionality is already implemented for testing and ease of use in f
 
 You can use the included `multi_takeoff.launch` file to issue a simple takeoff and land mission to the drones. Run it by `roslaunch swarm_main multi_takeoff.launch`. You should see all the three drones take off and land.
 
-If you run the scripts one after the other too quickly you might see in the console a lot of arming errors. Don't panic it's likely because the drones have not yet got a GPS lock which sometimes takes a minute or two to happen. The errors should clear out on their own and you should be able to arm properly.
+If you run the scripts one after the other too quickly you might see in the console a lot of arming errors. Don't panic, it's likely because the drones have not yet got a GPS lock which sometimes takes a minute or two to happen. The errors should clear out on their own and you should be able to arm properly.
 ## A breakdown of the utils_api
 The `utils_api` is a collection of basic functions which are used in autonomous flight control applications in python.
 
-To start using the api in your code use `from swarm_utils.utils_api import utils_api` to import and thenn instantiate to start using it.(`drone = utils_api()` used here as an example)
+To start using the api in your code use `from swarm_utils.utils_api import utils_api` to import and then instantiate to start using it.(`drone = utils_api()` used here as an example)
 
 Listed below are the functions currently implemented:
 - `utils_api.connect()` Waits for FCU (ArduPilot SITL) connection to be established.
@@ -101,9 +101,11 @@ Listed below are the functions currently implemented:
 - `utils_api.arm()` Attempts to arm the drone.
     - `drone.arm()` will try to arm the motors.
 - `utils_api.takeoff(altitude)` Attempts to arm and take off to the given `float altitude` height.
-    - eg. `drone.takeoff(3.5)` will start a takeoff to height of 3.5m.
+    - eg. `drone.takeoff(3.5)` will start a takeoff to height a of 3.5m.
 - `utils_api.land()` Initiates landing sequence over the current position.
-    - eg. `drone.land()` initiate landing sequence.
+    - eg. `drone.land()` initiates landing sequence.
+- `utils_api.set_waypoint(x,y,z,yaw)` Move the drone to (x,y,z) with heading (yaw) degrees.
+    - eg. `drone..set_waypoint(5,5,3,45)` will move the drone to (5,5,3) heading 45 deg.
 
 Feel free to poke around and change some code to see the effects!
 
